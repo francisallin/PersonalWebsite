@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header', {variant: 'compact'}); %>
+</header>
+
+<main>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="mt-4 p-5 bg-light text-dark rounded">
+      <h1>About me</h1>
+      <h2>Lam, Tsz To</h2>
+      <h4>Preferred name: Francis</h4>
+      <p><%= summary %></p>
+      <!-- = option: return escaped HTML (input string = remove the quotation marks and show) -->
+      <%= experienceTitle%>
+      <ul>
+        <% experiences.forEach(function(experience) { %>
+          <li>
+            <strong><%= experience.name %></strong>
+            : <%= experience.description %>          
+          </li>
+        <% }); %>
+      </ul>
+      <br>
+      <%= educationTitle%>
+      <ul>
+        <% educations.forEach(function(education) { %>
+          <li>
+            <strong><%= education.program %></strong>
+            : <%= education.institution %>
+            (<%= education.year %>)          
+          </li>
+        <% }); %>
+      </ul>
+      </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well pt-4">
+      <img src="img/LeftCropped.jpg" alt="Personal photo" style="width: 200px; border-radius: 5px">
+    </div>
+    <div>
+      
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

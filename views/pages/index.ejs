@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %> 
+  <%# # option = comment%>
+  <%# - option: return unescaped HTML (whatever written = show) %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="p-4 bg-light">
+      <h1>Hello there!</h1>
+      <p>Welcome to my personal portfolio</p>
+      <p>Need to build a website? Need to get a web app? You are in the right place</p>
+      <div>
+        <button class="btn btn-info"><a href="/about" style="text-decoration: none; color:rgb(64, 63, 63);">About me</button>
+      </div>     
+    </div>
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
