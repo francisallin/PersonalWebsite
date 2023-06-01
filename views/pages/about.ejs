@@ -11,7 +11,8 @@
 
 <main>
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-6">
     <div class="mt-4 p-5 bg-light text-dark rounded">
       <h1>About me</h1>
       <h2>Lam, Tsz To</h2>
@@ -38,17 +39,24 @@
           </li>
         <% }); %>
       </ul>
+      <button id="resumeBtn" class="btn-dark btn">Resume</button>
       </div>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="well pt-4">
-      <img src="img/LeftCropped.jpg" alt="Personal photo" style="width: 200px; border-radius: 5px">
+      <img src="img/LeftCropped.jpg" alt="Personal photo" style="width: 75%; border-radius: 5px">
     </div>
     <div>
       
     </div>
   </div>
+</div>
+<div id="resumePDF">
+  <h1>Resume</h1>
+    <object data="Resume Tsz To LAM.pdf" type="application/pdf" width="100%" height="500px">
+      <p>Unable to display PDF file. <a href="Resume Tsz To LAM.pdf">Download</a> instead.</p>
+    </object>
 </div>
 </main>
 

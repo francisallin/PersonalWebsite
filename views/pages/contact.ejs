@@ -10,33 +10,34 @@
 </header>
 
 <main>
-    <div class="mt-4 p-5 bg-light text-dark rounded">
-        <h1>Contact me</h1>
-        <div>
-            You may contact me through my email: <a href="mailto:tlam102@my.centennialcollege.ca">tlam102@my.centennialcollege.ca</a> <br>
-            You can also contact me on <a href="https://www.linkedin.com/in/tsz-to-lam-4b2095125/">LinkedIn</a>. <br> 
-            Or, just feel free to drop me a message. I will contact you shortly. <br>
+    <div class="mt-4 p-5 bg-light text-dark rounded row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>Contact me</h1>
+            You can contact me through my email: <a href="mailto:tlam102@my.centennialcollege.ca">tlam102@my.centennialcollege.ca</a> <br>
+            or on <a href="https://www.linkedin.com/in/tsz-to-lam-4b2095125/">LinkedIn</a>. <br> 
+            Or, just feel free to drop me a message. I will contact you shortly. <br><br>
+            <form>
+                <div class="form-group">
+                    <label for="fname">First name</label>
+                    <input type="text" class="form-control" id="fname" >
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last name</label>
+                    <input type="text" class="form-control" id="lname">
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email address</label>
+                    <input type="email" class="form-control" id="Email"  placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" placeholder="Your message"></textarea>
+                </div>
+                <br>
+                <button type="submit" id="submit" class="btn btn-dark">Submit</button>
+            </form>
         </div>
-        <form>
-            <div class="form-group">
-                <label for="fname">First name</label>
-                <input type="text" class="form-control" id="fname" >
-            </div>
-            <div class="form-group">
-                <label for="lname">Last name</label>
-                <input type="text" class="form-control" id="lname">
-            </div>
-            <div class="form-group">
-                <label for="Email">Email address</label>
-                <input type="email" class="form-control" id="Email"  placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <input type="text" class="form-control" id="message" placeholder="Your message">
-            </div>
-            <br>
-            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-        </form>
     </div>
 </main>
 

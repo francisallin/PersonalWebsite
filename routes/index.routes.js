@@ -52,12 +52,12 @@ router.get('/services', function(req, res) {
 });
 //projects page
 router.get('/projects', (req, res)=>{
-  var projectsTitle = "Projects and Works in Progress";
+  var projectsTitle = "My projects and works in progress (WIP)";
   var projects = [
     {
       name: 'OptomHub (WIP)', 
       image:'img/optomhublogo.png',
-      description: 'Being a website designed for eyecare professionals, OptomHub uses jQuery for multiple choice question creation and formula calculation', 
+      description: 'A website designed for eyecare professionals. OptomHub uses jQuery for multiple choice question creation and formula calculation.', 
       link: 'https://github.com/francisallin/PWA'
     },
     {
@@ -69,7 +69,7 @@ router.get('/projects', (req, res)=>{
     {
       name: 'Google Page Replica',
       image: 'img/GooglePage.png',
-      description:'A replica of <a href="https://google.com">google</a> homepage to showcase my css',
+      description:'A replica of Google homepage to showcase my css',
       link:'https://github.com/francisallin/Google-page'
     }
   ]
