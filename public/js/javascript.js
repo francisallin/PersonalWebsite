@@ -6,4 +6,9 @@ $(document).ready(function(){
     $('#resumeBtn').click(function(){
         $('#resumePDF').toggle(800);
     })
+    $(function(){
+        $("#container1").twentytwenty();
+        $("#container2").twentytwenty();
+    });
 });
+

@@ -37,10 +37,11 @@ router.get('/about', function(req, res) {
 router.get('/services', function(req, res) {
     var tagline = "Frontend development and other services";
     var skills = [
-      { name: 'Responsive website development', description: "jQuery, Node js, Angular, Express framework and EJS"},
-      { name: 'UI/UX design', description: "Figma, Bootstrap 5"},
+      { name: 'Responsive website development', description: "jQuery, Bootstrap 5, Node js, Angular, Express framework and EJS"},
+      { name: 'UI/UX design', description: "Figma, Adobe Illustrator"},
       { name: 'Relational and non-relational database management', description: "Oracle sql, PL/SQL and MongoDB"},
-      { name: 'Eyecare and optical industry knowledge', description: "Registered Optometrist (Part I) in Hong Kong"}
+      { name: 'Eyecare and optical industry knowledge', description: "Registered Optometrist (Part I) in Hong Kong"},
+      { name: 'Photography and painting', description: 'DSLR user with experience in watercolour and arcylic painting'}
     ];
     var linkToProjects = "./projects";
     res.render('pages/services', {
@@ -63,13 +64,13 @@ router.get('/projects', (req, res)=>{
     {
       name: 'Blue Salt Hackathon UI', 
       image: 'img/Hackathon.png',
-      description: 'Targeting small scale restaurant owners, this UI serves as an integral part of an user-friendly solution for managing the advertisement overlays on TV', 
+      description: 'Targeting small scale restaurant owners, this UI serves as an integral part of an user-friendly solution for managing the advertisement overlays on TV.', 
       link: 'https://www.figma.com/file/7Tul7ZcS2nTrsYYawPT4Cb/Bluesalt-Hackathon-Solo-(Copy)?type=design&t=5KdHGMwdJ7vKNOSH-6'
     },
     {
       name: 'Google Page Replica',
       image: 'img/GooglePage.png',
-      description:'A replica of Google homepage to showcase my css',
+      description:'A replica of Google homepage created with purely HTML and CSS in the early days of my coding journey.',
       link:'https://github.com/francisallin/Google-page'
     }
   ]

@@ -14,14 +14,14 @@
   <div class="col-sm-2"></div>
   <div class="col-sm-6">
     <h1>Projects</h1>
-    <p><%= projectsTitle %></p>
+    <h5>Tech related: <%= projectsTitle %></h5>
   </div>
   <!--Credit: https://github.com/StartBootstrap/startbootstrap-personal-->
   <div class="d-flex flex-wrap justify-content-center">
     <% projects.forEach(function(project) { %>
-      <div class="col-sm-4 card shadow rounded-4 border-0 m-3"> <!--with border-->
+      <div class="col-sm-4 card shadow rounded-4 border-0 m-3 p-2"> <!--with border-->
         <div class="card-body p-0 m-2 align-items-center">
-          <div class="d-flex align-items-center" style="min-height: 150px;">
+          <div class="d-flex align-items-center" style="min-height: 180px;">
             <img class="img-fluid" src="<%= project.image%>" alt="Hackathon Screenshot" >
           </div>
           <div class="p-5">
@@ -33,6 +33,23 @@
       </div>
     <% }); %>
   </div>
+  <div class="p-5 mb-4 bg-light rounded-3 row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h5>Art related: Blending photography and painting<br></h5> 
+      <h6>P.S.: image is degraded by scanner, the actual art looks better</h6><br>
+      <div id="container1">
+        <img src="img/EasternView.jpg" />
+        <img src="img/Acrylic_EasternView.jpg" />
+      </div> <br>
+      <div id="container2">
+        <img src="img/Saikung.jpg" />
+        <img src="img/Acrylic_Saikung.jpg" />
+      </div>
+
+    </div>
+  </div>  
+
 </div>
 </main>
 
