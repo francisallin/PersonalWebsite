@@ -15,7 +15,7 @@ router.get('/about', function(req, res) {
     var summary = "Eager to put knowledge and experience into use, Francis is motivated to learn and support your team to deliver the best solution to your client."
     var experienceTitle = "Experience";
     var experiences = [
-        {name: "Blue Salt Hackathon", description:"Engage in UI/UX design for media company targeted in real-time TV commercials overlays"},
+        {name: "Blue Salt Media Hackathon", description:"Engage in UI/UX design for media company targeted in real-time TV commercials overlays"},
         {name: "Collision", description:"Facilitate smooth operation of the multi-day event as a volunteer"},
         {name: "Salesperson, Icon Optical Inc.", description:"Provide professional and multilingual (English, Cantonese and Mandarin) retail optical services"}
     ]
@@ -62,7 +62,7 @@ router.get('/projects', (req, res)=>{
       link: 'https://github.com/francisallin/PWA'
     },
     {
-      name: 'Blue Salt Hackathon UI', 
+      name: 'Blue Salt Media Hackathon UI Prototype', 
       image: 'img/Hackathon.png',
       description: 'Targeting small scale restaurant owners, this UI serves as an integral part of an user-friendly solution for managing the advertisement overlays on TV.', 
       link: 'https://www.figma.com/file/7Tul7ZcS2nTrsYYawPT4Cb/Bluesalt-Hackathon-Solo-(Copy)?type=design&t=5KdHGMwdJ7vKNOSH-6'
