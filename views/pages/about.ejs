@@ -1,3 +1,4 @@
+<!-- about me page-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +18,7 @@
       <h1>About me</h1>
       <h2>Lam, Tsz To</h2>
       <h4>Preferred name: Francis</h4>
+      <!-- import personal background content from routes-->
       <p><%= summary %></p>
       <!-- = option: return escaped HTML (input string = remove the quotation marks and show) -->
       <%= experienceTitle%>
@@ -39,19 +41,17 @@
           </li>
         <% }); %>
       </ul>
-      <button id="resumeBtn" class="btn-dark btn">Resume</button>
-      </div>
+      <button id="resumeBtn" class="btn-dark btn">View Resume</button>
+    </div>
   </div>
-
+<!-- personal photo-->
   <div class="col-sm-3">
     <div class="well pt-4">
       <img src="img/LeftCropped.jpg" alt="Personal photo" style="width: 75%; border-radius: 5px">
     </div>
-    <div>
-      
-    </div>
   </div>
 </div>
+<!-- resume is shown if "View Resume" is pressed-->
 <div id="resumePDF">
   <h1>Resume</h1>
     <object data="Resume Tsz To LAM.pdf" type="application/pdf" width="100%" height="500px">
