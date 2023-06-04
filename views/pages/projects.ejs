@@ -1,3 +1,4 @@
+<!-- projects page-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +19,9 @@
   </div>
   <!--Credit: https://github.com/StartBootstrap/startbootstrap-personal-->
   <div class="d-flex flex-wrap justify-content-center">
+    <!-- import projects content from routes-->
     <% projects.forEach(function(project) { %>
-      <div class="col-sm-4 card shadow rounded-4 border-0 m-3 p-2" style="min-width: 300px;"> <!--with border-->
+      <div class="col-sm-4 card shadow rounded-4 border-0 m-3 p-2" style="min-width: 300px;"> <!--cards with border start here-->
         <div class="card-body p-0 m-2 align-items-center">
           <div class="d-flex align-items-center" style="min-height: 180px;">
             <img class="img-fluid" src="<%= project.image%>" alt=" " >
@@ -33,6 +35,7 @@
       </div>
     <% }); %>
   </div>
+  <!-- gallery zone-->
   <div class="p-5 mb-4 bg-light rounded-3 row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
@@ -46,10 +49,8 @@
         <img src="img/Saikung.jpg" />
         <img src="img/Acrylic_Saikung.jpg" />
       </div>
-
     </div>
   </div>  
-
 </div>
 </main>
 
