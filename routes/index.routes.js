@@ -83,5 +83,8 @@ router.get('/projects', (req, res)=>{
 router.get('/contact', function(req, res) {// load up an ejs view file
   res.render("pages/contact")
 });
-
+// login page
+router.get('/login', function(req, res) {// load up an ejs view file
+  res.render("pages/login")
+});
 module.exports = router;
