@@ -1,3 +1,5 @@
+//Credit: https://github.com/zurb/twentytwenty
+
 (function($){
 
   $.fn.twentytwenty = function(options) {

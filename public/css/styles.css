@@ -2,9 +2,6 @@
 Name: Tsz To LAM 
 Student ID: 301253580
 Date: 30 May 2023 */
-button {
-    background-color: rgb(137, 108, 240);
-}
 body { padding-top:10px; }
 #resumePDF {
     display:none;
@@ -14,9 +11,5 @@ body { padding-top:10px; }
     object-fit: cover;
     width: 250px;
     height: 250px;
-    box-shadow: 5px 10px;
-}
-.customBtn{
-    text-decoration: none;
-    color:rgb(64, 63, 63);
+    box-shadow: 3px 7px;
 }
