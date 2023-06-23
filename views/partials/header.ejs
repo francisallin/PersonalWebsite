@@ -1,8 +1,9 @@
 <!-- partial of nav bar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
     <a class="navbar-brand" href="/"><img src="img/logoNoBG.png" alt="logo" style="width: 75px; margin-left: 20px;"></a>
     <!--img src is simply from img folder because static path is set in server.js-->
-    <ul class="navbar-nav mr-auto mx-3">
+    <div class="d-flex">
+    <ul class="navbar-nav mx-3 ms-auto">
         <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
         </li>
@@ -19,7 +20,39 @@
             <a class="nav-link" href="/contact">Contact</a>
         </li>
     </ul>
-    <button class="btn btn-dark mr-0">
-        <a  href="/login">Login</a>
-    </button>
+    <ul class="navbar-nav  me-auto" >
+        <li class="nav-item border rounded mx-3">
+            <a class="nav-link " href="/login">Login</a>
+        </li>
+    </ul>
+</div>
 </nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+    <a class="navbar-brand" href="/"><img src="img/logoNoBG.png" alt="logo" style="width: 75px; margin-left: 20px;"></a>
+  
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav> -->
+  
