@@ -1,7 +1,7 @@
 var express = require('express'),
+bodyParser = require('body-parser'),
 morgan = require('morgan');
 //compress = require('compression'),
-//bodyParser = require('body-parser'),
 //methodOverride = require('method-override')
 
 module.exports = function() {

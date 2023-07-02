@@ -4,7 +4,8 @@
 // };
 const express = require("express");
 const router = express.Router();
-
+const app = express();
+const User = require('../models/user.models');
 // index page
 router.get('/', function(req, res) {// load up an ejs view file
     res.render("pages/index");
@@ -87,4 +88,27 @@ router.get('/contact', function(req, res) {// load up an ejs view file
 router.get('/login', function(req, res) {// load up an ejs view file
   res.render("pages/login")
 });
+// login route
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await function(username, password){
+    const foundUser = User.findOne({ username: username });
+    if (!username || !password){
+      return false;
+    }
+    if(password !== foundUser.password){
+      return false;
+    }
+  };
+
+  if (user) {
+    // User authenticated, redirect to another page
+    res.redirect('/businessContacts');
+  } else {
+    // Invalid credentials, render the login page with an error message
+    res.render('login', { error: 'Invalid username or password' });
+  }
+});
+
 module.exports = router;
