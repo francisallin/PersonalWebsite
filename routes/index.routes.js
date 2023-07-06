@@ -3,9 +3,10 @@
 //     app.get('/', index.render);
 // };
 const express = require("express");
+const user = require("../models/user.models");
+const contact = require('../models/contacts.models')
 const router = express.Router();
 const app = express();
-const User = require('../models/user.models');
 // index page
 router.get('/', function(req, res) {// load up an ejs view file
     res.render("pages/index");
@@ -88,27 +89,18 @@ router.get('/contact', function(req, res) {// load up an ejs view file
 router.get('/login', function(req, res) {// load up an ejs view file
   res.render("pages/login")
 });
-// login route
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
 
-  const user = await function(username, password){
-    const foundUser = User.findOne({ username: username });
-    if (!username || !password){
-      return false;
-    }
-    if(password !== foundUser.password){
-      return false;
-    }
-  };
+// database routes
+const contacts = require('../controllers/index.server.controller');
 
-  if (user) {
-    // User authenticated, redirect to another page
-    res.redirect('/businessContacts');
-  } else {
-    // Invalid credentials, render the login page with an error message
-    res.render('login', { error: 'Invalid username or password' });
-  }
-});
+router.post('/businessContacts', contacts.create)
+
+router.get('/businessContacts', contacts.findAll) 
+
+router.get('/businessContacts/:id', contacts.findOne) 
+
+app.put('/businessContacts/:id', contacts.update) 
+
+app.delete('/businessContacts/:id', contacts.delete) 
 
 module.exports = router;
