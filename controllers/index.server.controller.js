@@ -1,44 +1,5 @@
-const Contact = require('../models/contacts.models');
-const User = require('../models/user.models');
 
-exports.login = (req, res) => {
-    User.find({ name: req.body.username, password: req.body.password})
-    .then(User => {
-        if (!User){
-            res.status(404).send({'message': 'user not found'});
-            res.render('login', { error: 'Invalid username or password' });
-        }
-        else 
-            res.redirect('/businessContacts');
-    })
-    .catch(error => {
-        res.status(500).send({
-            'message': 'Something went wrong',
-            'error' : error
-        })
-    })
-}
-// create user
-// Disabled to comment once user created
-// exports.create = (req, res) => {
-//     if(!req.body.username || !req.body.password){
-//         return res.status(400).send({
-//             'message': "Incomplete record"
-//         }); 
-//     }
-//     const user = new User({
-//         username : req.body.username,
-//         password : req.body.password
-//     })
-//     user.save()
-//     .then(data => res.send(data))
-//     .catch(error => {
-//         res.status(500).send({
-//             'message': 'Something went wrong',
-//             'error' : error
-//         })
-//     })
-// }
+const Contact = require('../models/contacts.models');
 //create contact
 exports.create = (req, res) => {
     if(!req.body.firstname){
@@ -62,7 +23,7 @@ exports.create = (req, res) => {
     })
 }
 
-exports.findAll = (req,res) => { //find is a default function of mongoDB
+exports.findAll = (req,res) => {
     Contact.find()
     .then(contact => {
         res.send(contact)
@@ -76,7 +37,6 @@ exports.findAll = (req,res) => { //find is a default function of mongoDB
 }
 
 exports.findOne = (req, res) => {
-    //console.log(req.params.id)
     Contact.findById(req.params.id)
     .then(contact => {
         if (!contact){

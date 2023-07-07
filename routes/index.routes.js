@@ -3,10 +3,11 @@
 //     app.get('/', index.render);
 // };
 const express = require("express");
-const user = require("../models/user.models");
-const contact = require('../models/contacts.models')
+const auth = require("../controllers/auth");
 const router = express.Router();
 const app = express();
+require("dotenv").config();
+
 // index page
 router.get('/', function(req, res) {// load up an ejs view file
     res.render("pages/index");
@@ -92,6 +93,11 @@ router.get('/login', function(req, res) {// load up an ejs view file
 
 // database routes
 const contacts = require('../controllers/index.server.controller');
+const users = require('../controllers/index.server.userController');
+
+router.post("/register", users.register);
+
+router.post("/login", auth, users.login);
 
 router.post('/businessContacts', contacts.create)
 
