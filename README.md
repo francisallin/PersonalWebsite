@@ -9,4 +9,5 @@ Credits to:
 - https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application
 - https://github.com/StartBootstrap/startbootstrap-personal
 - https://github.com/zurb/twentytwenty
-- https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/
+- https://www.section.io/engineering-education/
+- https://www.loginradius.com/blog/engineering/guest-post/nodejs-authentication-guide/

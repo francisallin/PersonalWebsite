@@ -1,121 +1,129 @@
 const User = require('../models/user.models');
-var bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
-//const jwtSecret = '12e351e26b6a8fb310347be9662c8486ff2d8e4939549f7e859bcc2d74fe8d2263c2b6';
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const jwtSecret = process.env.jwtSecret;
 
-exports.register = async (req, res) => {
-    try {
-      // Get user input
-      const { username, password, email } = req.body;
-  
-      // Validate user input
-      if (! username && password && email ) {
-        res.status(400).send("All input is required");
+exports.register = async (req, res, next) => {
+  const { username, password } = req.body
+  if (password.length < 6) {
+    return res.status(400).json({ message: "Password less than 6 characters" })
+  }
+  bcrypt.hash(password, 10)//10 = hash the pw 10 times
+  .then(async (hash) => { 
+    await User.create({
+      username,
+      password: hash,
+    })
+    const maxAge = 3 * 60 * 60; // 3hrs in sec
+    const token = jwt.sign(
+      { id: User._id, username, role: User.role },
+      jwtSecret,
+      {
+        expiresIn: maxAge, 
       }
-  
-      // check if user already exist
-      // Validate if user exist in our database
-      const oldUser = await User.findOne({ username });
-  
-      if (oldUser) {
-        return res.status(409).send("User Already Exist. Please Login");
-      }
-  
-      //Encrypt user password
-      encryptedPassword = await bcrypt.hash(password, 10);
-  
-      // Create user in our database
-      const user = await User.create({
-        username,
-        email: email.toLowerCase(), // sanitize: convert email to lowercase
-        password: encryptedPassword,
-      });
-  
-      // Create token
-      const token = jwt.sign(
-        { user_id: user._id, username },
-        process.env.jwtSecret,
-        {
-          expiresIn: "2h",
-        }
-      );
-      // save user token
-      user.token = token;
-  
-      // return new user
-      res.status(201).json(user);
-    } catch (err) {
-      console.log(err);
-    }
-    // Our register logic ends here
+    );
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: maxAge * 1000, // 3hrs in ms
+    });
+    res.status(201).json({
+      message: "User successfully created",
+      user: user._id,
+    });
+  })
+  .catch((error) =>
+    res.status(400).json({
+      message: "User not successful created",
+      error: error.message,
+    })
+  );
 }
-exports.login = async (req, res) => {
-    const { username, password } = req.body;
-    try {
-        // Check if username and password is provided
-        if (!username || !password) {
-        return res.status(400).json({
-            message: "Username or Password not present",
-        })}
-        const user = await User.findOne({ username });
-        if (user && (await bcrypt.compare(password, user.password))) {
-          // Create token
+exports.login = async (req, res, next) => {
+  const { username, password } = req.body
+  // Check if username and password is provided
+  if (!username || !password) {
+    return res.status(400).json({
+      message: "Username or Password not present",
+    })
+  }
+  try {
+    const user = await User.findOne({ username })
+    if (!user) {
+      res.status(400).json({
+        message: "Login not successful",
+        error: "User not found",
+      })
+    } 
+      // comparing given password with hashed password
+      bcrypt.compare(password, user.password)
+      .then((result)=>{
+        if (result) {
+          const maxAge = 3 * 60 * 60;
           const token = jwt.sign(
-            { user_id: user._id, username },
-            process.env.jwtSecret,
+            { id: user._id, username, role: user.role },
+            jwtSecret,
             {
-              expiresIn: "2h",
+              expiresIn: maxAge, 
             }
           );
-    
-          // save user token
-          user.token = token;
-    
-          // user
-          res.status(200).json(user);
-        }
-        res.status(400).send("Invalid Credentials");
+          res.cookie("jwt", token, {
+            httpOnly: true,
+            maxAge: maxAge * 1000, // 3hrs in ms
+          });
+          res.status(201).json({
+            message: "User successfully Logged in",
+            user: user._id,
+        });
+      } else {
+        res.status(400).json({ message: "Login not succesful" });
       }
-      catch(error){
-        res.status(500).send({
-            'message': 'Something went wrong',
-            'error' : error.message
-        })        
-      }
-
-};
-    // User.find({ name: req.body.username, password: req.body.password})
-    // .then(User => {
-    //     if (!User){
-    //         res.status(404).send({'message': 'user not found'});
-    //         res.render('login', { error: 'Invalid username or password' });
-    //     }
-    //     else 
-    //         res.redirect('/businessContacts');
-    // })
-    // .catch(error => {
-    //     res.status(500).send({
-    //         'message': 'Something went wrong',
-    //         'error' : error
-    //     })
-    // })// create user
-// Disabled to comment once user created
-// exports.create = (req, res) => {
-//     if(!req.body.username || !req.body.password){
-//         return res.status(400).send({
-//             'message': "Incomplete record"
-//         }); 
-//     }
-//     const user = new User({
-//         username : req.body.username,
-//         password : req.body.password
+    });
+} catch (error) {
+    res.status(400).json({
+      message: "An error occurred",
+      error: error.message,
+    })
+  }
+}
+// exports.adminAuth = (req, res, next) => {
+//   const token = req.cookies.jwt
+//   console.log(req.cookies)
+//   console.log(token)
+//   if (token) {
+//     jwt.verify(token, jwtSecret, (err, decodedToken) => {
+//       if (err) {
+//         return res.status(401).json({ message: "Not authorized" })
+//       } else {
+//         if (decodedToken.role !== "admin") {
+//           return res.status(401).json({ message: "Not authorized" })
+//         } else {
+//           next()
+//         }
+//       }
 //     })
-//     user.save()
-//     .then(data => res.send(data))
-//     .catch(error => {
-//         res.status(500).send({
-//             'message': 'Something went wrong',
-//             'error' : error
-//         })
+//   } else {
+//     return res
+//       .status(401)
+//       .json({ message: "Not authorized, token not available" })
+//   }
+// }
+// exports.userAuth = (req, res, next) => {
+//   const token = req.cookies.jwt
+//   if (token) {
+//     jwt.verify(token, jwtSecret, (err, decodedToken) => {
+//       if (err) {
+//         return res.status(401).json({ message: "Not authorized" })
+//       } else {
+//         if (decodedToken.role !== "Basic") {
+//           return res.status(401).json({ message: "Not authorized" })
+//         } else {
+//           next()
+//         }
+//       }
 //     })
+//   } else {
+//     return res
+//       .status(401)
+//       .json({ message: "Not authorized, token not available" })
+//   }
 // }

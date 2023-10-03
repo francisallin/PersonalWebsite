@@ -1,11 +1,8 @@
-// module.exports = function(app) {
-//     var index = require('../controllers/index.server.controller');
-//     app.get('/', index.render);
-// };
 const express = require("express");
-const auth = require("../controllers/auth");
+//const auth = require("../controllers/auth");
 const router = express.Router();
 const app = express();
+
 require("dotenv").config();
 
 // index page
@@ -97,16 +94,16 @@ const users = require('../controllers/index.server.userController');
 
 router.post("/register", users.register);
 
-router.post("/login", auth, users.login);
+//router.post("/login", users.login);
 
-router.post('/businessContacts', contacts.create)
+router.post('/businessContacts', users.login, (req, res) => res.render('pages/businessContacts'))//contacts.create)
 
-router.get('/businessContacts', contacts.findAll) 
+router.get('/businessContacts', users.login, contacts.findAll) 
 
-router.get('/businessContacts/:id', contacts.findOne) 
+//router.get('/businessContacts/:id', users.adminAuth, contacts.findOne) 
 
-app.put('/businessContacts/:id', contacts.update) 
+// router.put('/businessContacts/:id', users.adminAuth, contacts.update) 
 
-app.delete('/businessContacts/:id', contacts.delete) 
+// router.delete('/businessContacts/:id', users.adminAuth, contacts.delete) 
 
 module.exports = router;
